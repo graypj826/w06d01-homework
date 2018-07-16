@@ -19,13 +19,25 @@ router.get("/new", (req, res) => {
 	res.render("users/new.ejs")
 })
 
-router.get("/:id", (req, res) => {
-	User.findByID(req.params.id, (err, foundUser) => {
+router.get("/:id/edit", (req, res) => {
+	User.findById(req.params.id, (err, foundUser) => {
 		if (err){
 			console.log(err)
 		} else {
-			res.render("user/show.ejs",{
-				users : foundUser
+			res.render("users/edit.ejs",{
+				user : foundUser
+			})
+		}
+	})
+})
+
+router.get("/:id", (req, res) => {
+	User.findById(req.params.id, (err, foundUser) => {
+		if (err){
+			console.log(err)
+		} else {
+			res.render("users/show.ejs",{
+				user : foundUser
 			})
 		}
 	})

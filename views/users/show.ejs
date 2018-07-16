@@ -13,14 +13,10 @@
 	</header>
 	<main>
 		<section>
-			<ul>
-				<% for(let i = 0; i < users.length; i++){ %>
-				<li><a href="/users/<%= users[i].id%>"><%=users[i].name%></a></li>
-				<% } %>
-			</ul>
+			<h1> <%=user.name%> </h1>
 		</section>
 		<section>
-			<a href="/users/new"> Create a New User </a>
+			<h2>  <%=user.name%> profile </h2>
 		</section>
 	</main>
 </body>
