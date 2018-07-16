@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<header> 
+		<h1> Dem Users are HAWT! </h1>
+		<nav>
+			<a href="/"><h2> Home </h2></a>
+			<a href="/users"><h2> User Index </h2></a>
+		</nav>		
+	</header>
+	<main>
+		<section>
+			<ul>
+				<% for(let i = 0; i < users.length; i++){ %>
+				<li><%=users[i].name%></li>
+				<% } %>
+			</ul>
+		</section>
+		<section>
+			<a href="/users/new"> Create a New User </a>
+		</section>
+	</main>
+</body>
+</html>
