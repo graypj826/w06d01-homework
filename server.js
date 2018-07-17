@@ -13,6 +13,10 @@ const usersController = require("./controllers/users.js");
 
 app.use("/users", usersController);
 
+const photosController = require("./controllers/photos.js")
+
+app.use("/photos", photosController);
+
 
 app.get("/", (req, res) =>{
 	res.render("index.ejs")

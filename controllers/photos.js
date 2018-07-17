@@ -1,0 +1,96 @@
+const express = require("express");
+const router = express.Router();
+
+const Photos = require("../models/photos");
+const Users = require("../models/users")
+
+router.get("/", (req, res) => {
+	Photos.find({}, (err, allPhotos) => {
+		if(err){
+			console.log(err)
+		} else {
+			res.render("photos/index.ejs", {
+			photos : allPhotos
+			})
+		}
+	})
+})
+
+
+router.get("/new", (req, res) => {
+	Photos.findById(req.params.id, (err, foundPhoto) => {
+		if (err){
+			console.log(err)
+		} else {
+			Users.find({}, (err,allUsers) => {
+				console.log(allUsers)
+				if (err){
+					console.log(err)
+				} else {
+					res.render("photos/new.ejs", {
+						
+						photo : foundPhoto,
+						users : allUsers
+					})
+				}
+			})		
+		}
+	});
+});
+
+// router.get("/:id/new", (req, res) => {
+// 	Photos.findById(req.params.id, (err, foundPhoto) => {
+// 		if (err){
+// 			console.log(err)
+// 		} else {
+// 			res.render("photos/new.ejs", {
+// 				photo : foundPhoto
+// 			})
+// 		}
+// 	})
+// })
+
+router.get("/:id/edit", (req, res) => {
+	Photos.findById(req.params.id, (err, foundPhoto) => {
+		if (err){
+			console.log(err)
+		} else {
+			res.render("photos/edit.ejs", {
+				photo : foundPhoto
+			})
+		}
+	})
+})
+
+
+router.put("/:id", (req, res) => {
+	Photos.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedPhoto) => {
+		if (err){
+			console.log(err)
+		} else {
+			res.redirect("photos/index.ejs")
+		}
+	})
+})
+
+router.post("/", (req, res) => {
+	Photos.create(req.body, (err, createdPhoto) => {
+		if (err){
+			console.log(err)
+		} else {
+			res.redirect("/photos")
+		}
+	})
+})
+
+router.delete("/:id", (req, res) => {
+	Photos.findByIdAndRemove(req.params.id, (err, removePhoto) => {
+		if (err){
+			console.log (err)
+		} else {
+			res.redirect("photos/index.ejs")
+		}
+	})
+})
+
+module.exports = router;

@@ -1,0 +1,16 @@
+		<% include ../partials/_navbar.ejs %>
+		<h1> <%=user.name%>'s Profile </h1>
+	</header>
+		<main>
+		<h3> Feel Free To Let Them Know You Liked Their Pictures </h3>
+			<section>
+				<h1> <%=user.name%> </h1>
+			</section>
+			<section>
+				<h2>  <%=user.name%>'s' profile </h2>
+			</section>
+			<section>
+				<a href="/users/<%=user.id%>/edit"> Edit <%=user.name%> </a>
+			</section>
+		</main>
+	<% include ./partials/_footer.ejs %>

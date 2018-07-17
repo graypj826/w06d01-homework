@@ -2,26 +2,30 @@
 <html>
 <head>
 	<title></title>
+	<link href="https://fonts.googleapis.com/css?family=Ultra" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
 	<header> 
-		<h1> Dem Users are HAWT! </h1>
+		<h1> <%=user.name%>'s Profile </h1>
+
 		<nav>
 			<a href="/"><h2> Home </h2></a>
-			<a href="/users"><h2> User Index </h2></a>
+			<a href="/users"><h4> User Index </h4></a>
 		</nav>		
 	</header>
 	<main>
+	<h3> Feel Free To Let Them Know You Liked Their Pictures </h3>
 		<section>
 			<h1> <%=user.name%> </h1>
 		</section>
 		<section>
-			<h2>  <%=user.name%> profile </h2>
+			<h2>  <%=user.name%>'s' profile </h2>
 		</section>
 		<section>
 			<a href="/users/<%=user.id%>/edit"> Edit <%=user.name%> </a>
 		</section>
 	</main>
+	<% include ./partials/_footer.ejs %>
 </body>
 </html>

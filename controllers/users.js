@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const User = require("../models/users")
+const Photos = require ("../models/photos")
 
 router.get("/", (req, res) => {
 	User.find({}, (err, allUsers) => {
@@ -17,6 +18,10 @@ router.get("/", (req, res) => {
 
 router.get("/new", (req, res) => {
 	res.render("users/new.ejs")
+})
+
+router.get("/login", (req, res) => {
+	res.render("users/login.ejs")
 })
 
 router.get("/:id/edit", (req, res) => {

@@ -1,3 +1,23 @@
 body{
 	background-color: gray;
+	font-family: 'Ultra', serif;
+	text-align: center;
+}
+
+
+nav{
+	background-color: white;
+}
+
+a{
+	display: inline-block;
+}
+
+ul{
+	text-align: left;
+}
+
+header {
+	background-color: black;
+	color: white;
 }

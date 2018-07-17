@@ -1,0 +1,20 @@
+
+<% include ../partials/_navbar.ejs %>
+	<h1> Edit Picture </h1>
+	</header>
+	<main>
+		<section>
+			<img src="<%= photo.img %>">
+		</section>
+		<section>
+			<h4> How Would You Like To Edit This Image? </h4>
+			<form method="POST" action="/photos">
+				<input type="text" name="img" placeholder="image address"/>
+				<button type="submit"> Add Photograph </button>
+			</form>
+			<form method="POST" action="/users/<%=user.id%>?_method=DELETE">
+				<button type="submit" value="Delete User" name="delete"> delete </button>
+			</form>
+		</section>
+	</main> 
+	<% include ./partials/_footer.ejs %>

@@ -2,17 +2,22 @@
 <html>
 <head>
 	<title></title>
+	<link href="https://fonts.googleapis.com/css?family=Ultra" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
 	<header> 
-		<h1> Dem Users are HAWT! </h1>
+		<h1> User's Index </h1>
 		<nav>
 			<a href="/"><h2> Home </h2></a>
 			<a href="/users"><h2> User Index </h2></a>
 		</nav>		
 	</header>
 	<main>
+		<section class="intro">
+			<h4> Hi there -- feel free to browse our users. </h4> 
+			<h4> Don't be shy </h4>
+		</section>
 		<section>
 			<ul>
 				<% for(let i = 0; i < users.length; i++){ %>
@@ -22,8 +27,11 @@
 
 		</section>
 		<section>
-			<a href="/users/new"> Create a New User </a>
+			<h4> 
+			<h4> Or Join Bashley Nadison and meet other "photographers" in your area. </h4>
+			<a href="/users/new"> Join Bashley Nadison! </4>
 		</section>
 	</main>
+	<% include ./partials/_footer.ejs %>
 </body>
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link href="https://fonts.googleapis.com/css?family=Ultra" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+	<header> 
+		<h1> User's Photographs </h1>
+		<% include ../partials/_navbar.ejs%>	
+	</header>
+	<main>
+		<section class="intro">
+			<h4> Hi there -- feel free to browse our users' photographs. </h4> 
+			<h4> Don't be too shy to click those you like</h4>
+		</section>
+		<section>
+				<% for(let i = 0; i < photos.length; i++){ %>
+				<div><a href="/photos/<%= photos[i].id%>"><img src="<%=photos[i].img%>"></a><div>
+				<% } %>
+		</section>
+		<section>
+			<h4> <a href="/users/login">Login in to your account to submit your own pictures </h4>
+			  </a> <h4>
+			  	<br>
+			<h4> <a href="/users/new">Or Join Bashley Nadison and meet other "photographers" in your area. </a> </h4>
+			 
+		</section>
+	</main>
+	<% include ../partials/_footer.ejs %>
