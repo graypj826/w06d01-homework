@@ -7,6 +7,7 @@ require("./db/db");
 
 app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static("public"));
 
 const usersController = require("./controllers/users.js");
 

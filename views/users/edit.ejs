@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title></title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
 	<header> 
@@ -12,11 +13,19 @@
 		</nav>		
 	</header>
 	<main>
-		<form method="POST" action="/users">
-			<input type="text" name="name" placeholder="username"/>
-			<input type="text" name="password" placeholder="password"/>
-			<button type="submit"> create user </button>
-		</form>
+		<section>
+			<form method="POST" action="/users/<%=user.id%>?_method=PUT">
+				<input type="text" name="name" placeholder="username"/>
+				<input type="text" name="password" placeholder="password"/>
+				<button type="submit"> Edit User </button>
+			</form>
+		</section>
+		<br>
+		<section>
+			<form method="POST" action="/users/<%=user.id%>?_method=DELETE">
+				<button type="submit" value="Delete User" name="delete"> delete </button>
+			</form>
+		</section>
 	</main> 
 </body>
 </html>

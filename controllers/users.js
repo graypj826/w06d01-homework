@@ -49,7 +49,17 @@ router.post("/", (req, res) => {
 	})
 })
 
+router.put("/:id", (req, res) => {
+	User.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, createdUser) =>{
+		res.redirect("/users");
+	})
+})
 
+router.delete("/:id", (req, res) => {
+	User.findByIdAndRemove(req.params.id, (err, createdUser) =>{
+		res.redirect("/users");
+	})
+})
 
 
 module.exports = router;
