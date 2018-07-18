@@ -42,12 +42,27 @@ router.get("/:id/edit", (req, res) => {
 		if (err){
 			console.log(err)
 		} else {
-			res.render("photos/edit.ejs", {
-				photo : foundPhoto
+			Users.find({}, (err, allUsers) => {
+				if (err){
+					console.log(err)
+				} else {
+					Users.findOne({"photos._id": req.params.id}, (err, foundUser) =>{
+						if(err){
+							console.log(err)
+						} else {
+							res.render("photos/edit.ejs", { 
+								photo : foundPhoto,
+								allUsers : allUsers,
+								foundUser : foundUser
+							})
+						}
+					})	
+				}
 			})
+			
 		}
 	})
-})
+});
 
 router.get("/:id", (req, res) => {
 	Photos.findById(req.params.id, (err, foundPhoto) => {
