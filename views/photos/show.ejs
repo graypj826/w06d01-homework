@@ -1,16 +1,15 @@
 		<% include ../partials/_navbar.ejs %>
-		<h1> <%=user.name%>'s Profile </h1>
+		<h1> <%=photo.title%> </h1>
 	</header>
 		<main>
-		<h3> Feel Free To Let Them Know You Liked Their Pictures </h3>
-			<section>
-				<h1> <%=user.name%> </h1>
+			section>
+				<img src="<%= photo.img %>">
 			</section>
 			<section>
-				<h2>  <%=user.name%>'s' profile </h2>
+				<h1><a href="/users/<%=user._id%>"> by: <%=user.name%> </h1>
 			</section>
 			<section>
-				<a href="/users/<%=user.id%>/edit"> Edit <%=user.name%> </a>
+			<a href="/photos/<%=photo.id%>/edit"> Edit <%=photo.title%> </a>
 			</section>
 		</main>
-	<% include ./partials/_footer.ejs %>
+	<% include ../partials/_footer.ejs %>

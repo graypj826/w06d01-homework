@@ -2,7 +2,7 @@
 	<h1> Add To Your Catalogue </h1>	
 	</header>
 	<main>
-		<form method="POST" action="/photos">	
+		<form method="post" action="/photos">	
 			<select name="userId">
 				<% for(let i =0; i<users.length; i++){ %>
 					<option value="<%=users[i].id%>"> <%=users[i].name %> </option>
@@ -10,7 +10,7 @@
 			</select>
 			<input type="text" name="title" placeholder="title"/>
 			<input type="text" name="img" placeholder="image address"/>
-			<button type="submit"> Add Photograph </button>
+			<input type="submit" value="Add Photograph">
 		</form>
 	</main>
 <% include ../partials/_footer.ejs %> 

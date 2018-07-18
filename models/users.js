@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Photo = require("./photos");
+const Photo = require("./photos.js");
 
 
 const userSchema = Schema({
 
 	name: {type: String, required: true, unique: true},
 	password: String,
-	photos: [],
+	photos: [Photo.schema]
 
 });
 

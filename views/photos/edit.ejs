@@ -12,9 +12,9 @@
 				<input type="text" name="img" placeholder="image address"/>
 				<button type="submit"> Add Photograph </button>
 			</form>
-			<form method="POST" action="/users/<%=user.id%>?_method=DELETE">
-				<button type="submit" value="Delete User" name="delete"> delete </button>
+			<form method="POST" action="/photos/<%=photo.id%>?_method=DELETE">
+				<button type="submit" value="Delete Photo" name="delete"> delete </button>
 			</form>
 		</section>
 	</main> 
-	<% include ./partials/_footer.ejs %>
+	<% include ../partials/_footer.ejs %>

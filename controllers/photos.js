@@ -23,7 +23,6 @@ router.get("/new", (req, res) => {
 			console.log(err)
 		} else {
 			Users.find({}, (err,allUsers) => {
-				console.log(allUsers)
 				if (err){
 					console.log(err)
 				} else {
@@ -38,18 +37,6 @@ router.get("/new", (req, res) => {
 	});
 });
 
-// router.get("/:id/new", (req, res) => {
-// 	Photos.findById(req.params.id, (err, foundPhoto) => {
-// 		if (err){
-// 			console.log(err)
-// 		} else {
-// 			res.render("photos/new.ejs", {
-// 				photo : foundPhoto
-// 			})
-// 		}
-// 	})
-// })
-
 router.get("/:id/edit", (req, res) => {
 	Photos.findById(req.params.id, (err, foundPhoto) => {
 		if (err){
@@ -62,6 +49,43 @@ router.get("/:id/edit", (req, res) => {
 	})
 })
 
+router.get("/:id", (req, res) => {
+	Photos.findById(req.params.id, (err, foundPhoto) => {
+		if (err){
+			console.log(err)
+		} else {
+			Users.findOne({"photos._id": req.params.id},
+				(err,foundUser) => {
+				console.log()
+				console.log(foundUser)
+				if (err){
+					console.log(err)
+				} else {
+					res.render("photos/show.ejs", {
+						photo : foundPhoto,
+						user : foundUser
+					})
+				}
+			})		
+		}
+	});
+});
+
+
+// router.get("/:id/new", (req, res) => {
+// 	Photos.findById(req.params.id, (err, foundPhoto) => {
+// 		if (err){
+// 			console.log(err)
+// 		} else {
+// 			res.render("photos/new.ejs", {
+// 				photo : foundPhoto
+// 			})
+// 		}
+// 	})
+// })
+
+
+
 
 router.put("/:id", (req, res) => {
 	Photos.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedPhoto) => {
@@ -73,24 +97,34 @@ router.put("/:id", (req, res) => {
 	})
 })
 
+
 router.post("/", (req, res) => {
-	Photos.create(req.body, (err, createdPhoto) => {
+	Users.findById(req.body.userId, (err, foundUser) => {
 		if (err){
 			console.log(err)
 		} else {
-			res.redirect("/photos")
+			Photos.create(req.body, (err, createdPhoto) => {
+				if (err){
+					console.log(err)
+				} else {
+
+					foundUser.photos.push(createdPhoto);
+					foundUser.save((err, data) => {
+						res.redirect("/photos");
+					})
+				}
+			})
 		}
 	})
+	
 })
 
 router.delete("/:id", (req, res) => {
 	Photos.findByIdAndRemove(req.params.id, (err, removePhoto) => {
-		if (err){
-			console.log (err)
-		} else {
-			res.redirect("photos/index.ejs")
-		}
+			res.redirect("/photos")
 	})
 })
+
+
 
 module.exports = router;
