@@ -92,10 +92,21 @@ router.put("/:id", (req, res) => {
 		if (err){
 			console.log(err)
 		} else {
-			res.redirect("photos/index.ejs")
+			Users.findOne({"photos._id":req.params.id}, (err, foundUser) =>{
+				if(err){
+					console.log(err)
+				} else {
+					foundUser.photos.id(req.params.id).remove();
+					foundUser.photos.push(updatedPhoto);
+					foundAuthor.save((err, data) =>
+					{
+						res.redirect("/photos/"+req.params.id);
+					})
+				}
+			})
 		}
 	})
-})
+});
 
 
 router.post("/", (req, res) => {
@@ -107,7 +118,6 @@ router.post("/", (req, res) => {
 				if (err){
 					console.log(err)
 				} else {
-
 					foundUser.photos.push(createdPhoto);
 					foundUser.save((err, data) => {
 						res.redirect("/photos");

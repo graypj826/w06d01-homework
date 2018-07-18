@@ -61,10 +61,18 @@ router.put("/:id", (req, res) => {
 })
 
 router.delete("/:id", (req, res) => {
-	User.findByIdAndRemove(req.params.id, (err, createdUser) =>{
-		res.redirect("/users");
+	User.findByIdAndRemove(req.params.id, (err, deletedUser) =>{
+		const photosIds = [];
+		for (let i =0; i < deletedUser.photos.length; i++){
+			photosIds.push(deletedUser.photos[i].id)
+		}
+		Photos.remove(
+				{ _id: {$in: photosIds}}, (err, data) =>{
+				res.redirect("/users")
+				}
+			)
+		})
 	})
-})
 
 
 module.exports = router;

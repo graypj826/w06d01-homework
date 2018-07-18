@@ -23,15 +23,10 @@
 			<h2>  <%=user.name%>'s pictures </h2>
 		</section>
 			<ul>
-				<% for(let i =0; i<users.photos.length; i++){%>
-				<li><a href="/photos/<%users.photos[i]._id/%>"><%=user.photos[i].title%></a></li>
+				<% for(let i = 0; i < user.photos.length; i++){%>
+				<li><a href="/photos/<%user.photos[i]._id%>"><%=user.photos[i].title%></a></li>
 				<%}%>
 			</ul>
-			<ul>
-        		<% for(let i = 0; i < user.photos.length; i++){ %>
-         	   <li><a href="/photos/<%=user.photos[i]._id%>"><%=user.photos[i].title%></a></li>
-      			  <% } %>
- 			  </ul>
 		<section>
 			<a href="/users/<%=user.id%>/edit"> Edit <%=user.name%> </a>
 		</section>
