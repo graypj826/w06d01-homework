@@ -121,9 +121,19 @@ router.post("/", (req, res) => {
 
 router.delete("/:id", (req, res) => {
 	Photos.findByIdAndRemove(req.params.id, (err, removePhoto) => {
-			res.redirect("/photos")
+			Users.findOne({"photos._id": req.params.id}, (err, foundUser) =>{
+					if (err){
+						console.log(err)
+					} else {
+						foundUser.photos.id(req.params.id).remove();
+						foundUser.save((err, data) => {
+							res.redirect("/photos");
+						})
+					}
+			})
+			
 	})
-})
+});
 
 
 
