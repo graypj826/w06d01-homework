@@ -112,7 +112,7 @@ router.put("/:id", (req, res) => {
 						Users.findById(req.body.userId, (err, newUser)=>{
 							newUser.photos.push(updatedPhoto);
 							newUser.save((err,savedNewUser) =>{
-								res.redirect("/photos"+req.params.id);
+								res.redirect("/photos/"+req.params.id);
 							});
 						});
 					});
