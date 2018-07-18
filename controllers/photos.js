@@ -52,8 +52,8 @@ router.get("/:id/edit", (req, res) => {
 						} else {
 							res.render("photos/edit.ejs", { 
 								photo : foundPhoto,
-								allUsers : allUsers,
-								foundUser : foundUser
+								users : allUsers,
+								photosUser : foundUser
 							})
 						}
 					})	
