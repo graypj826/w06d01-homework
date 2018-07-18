@@ -20,10 +20,9 @@
 						<%=users[i].name %> 
 						</option>
 					<%}%>
-				</select></form><br/>
+				</select><br/>
 				<input type="text" name="title" placeholder="title"/>
-				<input type="text" name="img" placeholder="image address"/>
-				<input type="submit" value="Add Photograph">
+				<input type="submit" value="Edit Photograph">
 			</form>
 			<form method="POST" action="/photos/<%=photo.id%>?_method=DELETE">
 				<button type="submit" value="Delete Photo" name="delete"> delete </button>

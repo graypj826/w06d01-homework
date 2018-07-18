@@ -71,8 +71,6 @@ router.get("/:id", (req, res) => {
 		} else {
 			Users.findOne({"photos._id": req.params.id},
 				(err,foundUser) => {
-				console.log()
-				console.log(foundUser)
 				if (err){
 					console.log(err)
 				} else {
@@ -108,19 +106,28 @@ router.put("/:id", (req, res) => {
 			console.log(err)
 		} else {
 			Users.findOne({"photos._id":req.params.id}, (err, foundUser) =>{
-				if(err){
-					console.log(err)
+				if(foundUser._id.toString() !== req.body.userId){
+					foundUser.photos.id(req.params.id).remove();
+					foundUser.save((err, savedFoundUser) => {
+						Users.findById(req.body.userId, (err, newUser)=>{
+							newUser.photos.push(updatedPhoto);
+							newUser.save((err,savedNewUser) =>{
+								res.redirect("/photos"+req.params.id);
+							});
+						});
+					});
+
 				} else {
 					foundUser.photos.id(req.params.id).remove();
 					foundUser.photos.push(updatedPhoto);
 					foundAuthor.save((err, data) =>
 					{
 						res.redirect("/photos/"+req.params.id);
-					})
+					});
 				}
-			})
-		}
-	})
+			});
+		};
+	});
 });
 
 
